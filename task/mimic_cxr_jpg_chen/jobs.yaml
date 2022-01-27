@@ -1,0 +1,36 @@
+## debug
+#clinical_21/cvt_21_to_distilgpt2_50k:
+#  train: 1
+#  resumable: 0
+#  test: 1
+#  trial: 0
+#  debug: 1
+#  sbatch: 0
+#  num_nodes: 1
+#  num_gpus: 1
+#  num_workers: 5
+#  time_limit: 1-00:00:00
+#
+#clinical_21/cvt_21_to_distilgpt2_medicap_21_redux:
+#  train: 0
+#  resumable: 0
+#  test: 1
+#  trial: 0
+#  debug: 0
+#  sbatch: 0
+#  num_nodes: 1
+#  num_gpus: 4
+#  num_workers: 5
+#  time_limit: 1-00:00:00
+
+clinical_21/cvt_21_to_distilgpt2_50k:
+  train: 0
+  resumable: 1
+  test: 1
+  trials: 5
+  debug: 0
+  sbatch: 1
+  num_nodes: 1
+  num_gpus: 4
+  num_workers: 5
+  time_limit: 0-02:00:00
