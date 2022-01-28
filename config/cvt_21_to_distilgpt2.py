@@ -4,7 +4,7 @@ from transmodal.network.cvt import spatial_position_feature_size
 def config(
         multi_image_input=True,
         image_size=384,
-        encoder_module="transmodal.network.cvt_medicap_21",
+        encoder_module="transmodal.network.cvt",
         encoder_definition="CvT",
         encoder_ckpt_name="CvT-21-384x384-IN-22k",
         encoder_model_config="cvt-21-384x384",

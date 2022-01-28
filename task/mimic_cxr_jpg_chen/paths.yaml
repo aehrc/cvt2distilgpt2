@@ -1,0 +1,14 @@
+exp_dir: "/datasets/work/hb-mlaifsp-mm/work/Experiments"
+dataset_dir: "/scratch2/nic261/Datasets"
+ckpt_zoo_dir: "/datasets/work/hb-mlaifsp-mm/work/Checkpoints"
+venv_path: "venv/bin/activate"
+#
+#exp_dir: "/datasets/work/hb-mlaifsp-mm/work/Experiments"
+#dataset_dir: "/scratch2/nic261/Datasets"
+#ckpt_zoo_dir: "data/checkpoints"
+#venv_path: "venv/bin/activate"
+
+#exp_dir: "data/experiment"
+#dataset_dir: "datasets"
+#ckpt_zoo_dir: "data/checkpoints"
+#venv_path: "venv/bin/activate"

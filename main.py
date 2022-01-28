@@ -120,8 +120,7 @@ def main(clargs, *args):
                 ckpt_path = get_best_ckpt(config['exp_dir'], config['monitor_mode'])
             print('Testing checkpoint: {}.'.format(ckpt_path))
             write_test_ckpt_path(ckpt_path, clargs.exp_dir)
-            transmodal = get_transmodal(config).load_from_checkpoint(checkpoint_path=ckpt_path, **config)
-
+            transmodal = get_transmodal(config).load_from_checkpoint(checkpoint_path=ckpt_path)
 
         dataset, config = get_dataset(config)
         trainer = create_trainer(**config)
@@ -154,7 +153,7 @@ if __name__ == '__main__':
                 {**paths, **jargs, **get_workstation_config(jargs['num_gpus']), 'ver': ver, 'trial': trial},
             )
             clargs_dict['exp_dir'] = os.path.join(paths['exp_dir'], clargs_base.task, ver)
-            if 'trial' in clargs_dict:
+            if clargs_dict['trial'] >= 0:
                 clargs_dict['exp_dir'] = os.path.join(clargs_dict['exp_dir'], str(trial))
             Path(clargs_dict['exp_dir']).mkdir(parents=True, exist_ok=True)
             clargs = Namespace(**clargs_dict)

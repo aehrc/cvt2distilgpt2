@@ -14,6 +14,7 @@ import re
 import socket
 import time
 import torch
+import warnings
 import yaml
 
 
@@ -34,8 +35,15 @@ def get_workstation_config(num_gpus):
         if i in socket.gethostname():
             config = configs[i]
             break
-    assert isinstance(config, dict), f"Workstation configuration for {socket.gethostname()} does not exist."
-    assert num_gpus <= config["total_gpus"], f"Too many GPUs requested for workstation {socket.gethostname()}."
+    if not isinstance(config, dict):
+        warnings.warn(f"Workstation configuration for {socket.gethostname()} does not exist. Using default "
+                      f"configuration: num_workers=3, total_gpus=1, total_memory=16")
+    else:
+        assert num_gpus <= config["total_gpus"], f"Too many GPUs requested for workstation {socket.gethostname()}."
+
+    if config == None:
+        config = {"num_workers": 3, "total_gpus": 1, "total_memory": 16}
+
     config["memory"] = str(int((config["total_memory"] / config["total_gpus"])) * num_gpus) + "GB"
     return config
 
@@ -50,21 +58,8 @@ def get_paths(task):
     Returns:
         Dictionary of paths.
     """
-    json_list = os.listdir(os.path.join("task", task, "paths"))
-    if socket.gethostname() + ".json" in json_list:
-        with open(
-                os.path.join(
-                    "task", task , "paths", socket.gethostname() + ".json"
-                )
-        ) as f:
-            paths = json.load(f)
-    elif getpass.getuser() + ".json" in json_list:
-        with open(
-                os.path.join("task", task , "paths", getpass.getuser() + ".json")
-        ) as f:
-            paths = json.load(f)
-    else:
-        raise ValueError("No .json path file exists for the hostname or user.")
+    with open(os.path.join("task", task, "paths.yaml")) as f:
+        paths = yaml.load(f, Loader=yaml.FullLoader)
     return paths
 
 def get_dataset(config: Dict[str, Any]) -> Tuple[LightningDataModule, Dict[str, Any]]:
@@ -184,7 +179,7 @@ def get_trials(clargs_base, jargs):
         first_trial, last_trial = 0, jargs['trials']
         jargs.pop('trials', None)
     else:
-        first_trial, last_trial = 0, 1
+        first_trial, last_trial = -1, 0
 
     return first_trial, last_trial
 
@@ -204,7 +199,7 @@ def get_best_ckpt(exp_dir: str, monitor_mode: str) -> str:
     ckpt_list = glob.glob(os.path.join(exp_dir, "epoch*.ckpt"))
 
     if not ckpt_list:
-        raise ValueError("No checkpoints exist in the checkpoint directory.")
+        raise ValueError(f"No checkpoint exist in {exp_dir}.")
 
     scores = [
         re.findall(r"[-+]?\d*\.\d+|\d+", i.rsplit("=", 1)[1])[0] for i in ckpt_list

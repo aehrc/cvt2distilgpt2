@@ -1,6 +1,0 @@
-{
-  "exp_dir": "/datasets/work/hb-mlaifsp-mm/work/Experiments",
-  "dataset_dir": "/scratch2/nic261/Datasets",
-  "ckpt_zoo_dir": "/datasets/work/hb-mlaifsp-mm/work/Checkpoints",
-  "venv_path": "/scratch1/nic261/Environments/clinical_21/bin/activate"
-}

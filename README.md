@@ -1,9 +1,9 @@
-
-# CvT2DistilGPT2: Improving Chest X-Ray Report Generation by Leveraging Warm-Starting
+# CvT2DistilGPT2
+#### Improving Chest X-Ray Report Generation by Leveraging Warm-Starting
 - This repository houses the implementation of CvT2DistilGPT2 from [[1]](https://arxiv.org/abs/2201.09405).
 - CvT2DistilGPT2 is an encoder-to-decoder model that was developed for chest X-ray report generation. 
 - Checkpoints for CvT2DistilGPT2 on MIMIC-CXR and IU X-Ray are available.
-- This implementation is general and could be used for any image captioning task.
+- This implementation could be adapted for any image captioning task by modifying the datamodule.
 
 
 |![](docs/figure.png)|
@@ -22,26 +22,39 @@ pip install --upgrade -r requirements.txt --no-cache-dir
 
 ## Datasets   
 
-MIMIC-CXR
-https://physionet.org/content/mimic-cxr/2.0.0/
-https://drive.google.com/file/d/1DS6NYirOXQf8qYieSVMvqNwuOlgAbM_E/view?usp=sharing
+#### For MIMIC-CXR: 
+1. Download MIMIC-CXR-JPG from: 
+    ```
+    https://physionet.org/content/mimic-cxr/2.0.0/
+    ```
+2. Place in `dataset/mimic_cxr_jpg` such that `dataset/mimic_cxr_jpg/physionet.org/files/mimic-cxr-jpg/2.0.0/files`.
 
-IU X-Ray
-https://openi.nlm.nih.gov/imgs/collections/NLMCXR_png.tgz
-https://drive.google.com/file/d/1c0BXEuDy8Cmm2jfN0YYGkQxFZd2ZIoLg/view
+3. Download the [Chen *et al.*](https://aclanthology.org/2020.emnlp-main.112.pdf) labels for MIMIC-CXR from:
+    ```
+    https://drive.google.com/file/d/1DS6NYirOXQf8qYieSVMvqNwuOlgAbM_E/view?usp=sharing
+    ```
+4. Place `annotations.json` in `dataset/mimic_cxr_chen`
+
+#### For IU X-Ray: 
+
+1. Download the [Chen *et al.*](https://aclanthology.org/2020.emnlp-main.112.pdf) labels for IU X-Ray and the chest X-rays in `png` format from:
+    ```
+    https://drive.google.com/file/d/1c0BXEuDy8Cmm2jfN0YYGkQxFZd2ZIoLg/view
+    ```
+4. Place files into `dataset/iu_x-ray_chen` such that `dataset/iu_x-ray_chen/annotations.json` and `dataset/iu_x-ray_chen/images`.
 
 ## Checkpoints   
 
 
 ## Instructions   
-For MIMIC-CXR (labels from [Chen **et al.**]()):
+For the MIMIC-CXR (labels from [Chen *et al.*](https://aclanthology.org/2020.emnlp-main.112.pdf)):
 ```shell script
 python3 main.py --task mimic_cxr_jpg_chen
 ``` 
 
-For IU X-Ray (labels from [Chen **et al.**]()):
+For IU X-Ray (labels from [Chen *et al.*](https://aclanthology.org/2020.emnlp-main.112.pdf)):
 ```shell script
-python3 main.py --task mimic_cxr_jpg_chen
+python3 main.py --task iu_x_ray_chen
 ``` 
 
 ## Reference
