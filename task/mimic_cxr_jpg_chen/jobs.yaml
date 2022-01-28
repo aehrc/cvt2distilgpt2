@@ -1,10 +1,7 @@
-cvt_21_to_distilgpt2:
-  train: 0
-  resumable: 1
-  test: 1
-  debug: 0
-  sbatch: 0
-  num_nodes: 1
-  num_gpus: 1
-  num_workers: 5
-  time_limit: 0-02:00:00
+cvt_21_to_distilgpt2_scst:
+    train: 0
+    test: 1
+    debug: 0
+    num_nodes: 1
+    num_gpus: 1
+    num_workers: 5

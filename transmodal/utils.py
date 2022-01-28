@@ -37,12 +37,12 @@ def get_workstation_config(num_gpus):
             break
     if not isinstance(config, dict):
         warnings.warn(f"Workstation configuration for {socket.gethostname()} does not exist. Using default "
-                      f"configuration: num_workers=3, total_gpus=1, total_memory=16")
+                      f"configuration: num_workers=5, total_gpus=1, total_memory=16")
     else:
         assert num_gpus <= config["total_gpus"], f"Too many GPUs requested for workstation {socket.gethostname()}."
 
     if config == None:
-        config = {"num_workers": 3, "total_gpus": 1, "total_memory": 16}
+        config = {"num_workers": 5, "total_gpus": 1, "total_memory": 16}
 
     config["memory"] = str(int((config["total_memory"] / config["total_gpus"])) * num_gpus) + "GB"
     return config

@@ -1,5 +1,6 @@
 from transmodal.network.cvt import spatial_position_feature_size
 
+# TODO: Ensure this is working for training. The optimizer is likely not setup for the new decoder.
 
 def config(
         multi_image_input=True,
