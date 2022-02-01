@@ -1,3 +1,4 @@
+# Note: this repo is under early development
 # CvT2DistilGPT2
 #### Improving Chest X-Ray Report Generation by Leveraging Warm-Starting
 - This repository houses the implementation of CvT2DistilGPT2 from [[1]](https://arxiv.org/abs/2201.09405).
