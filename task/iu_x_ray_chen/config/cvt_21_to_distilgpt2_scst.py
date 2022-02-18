@@ -1,4 +1,4 @@
-from medicap_21.config.final.cvt_21_to_distilgpt2 import config as external_config
+from config.cvt_21_to_distilgpt2 import config as external_config
 
 def config():
     updated_config = external_config(multi_image_input=True)
@@ -8,9 +8,10 @@ def config():
     updated_config["reward"] = {
         "module": "transmodal.rewards.cider",
         "definition": "ChenCOCOCIDErReward",
-        "kwargs": {"labels_file_path": "/datasets/work/hb-mlaifsp-mm/source/Datasets/iu_x-ray_chen/annotation.json"}
+        "kwargs": {"labels_file_path": "dataset/iu_x-ray_chen/annotation.json"}
     }
-    updated_config["pre_trained_ckpt_path"] = "/datasets/work/hb-mlaifsp-mm/work/Experiments/iu_x_ray_chen/medicap_21/final/cvt_21_to_distilgpt2/1/epoch=10-val_chen_cider=0.475024.ckpt"
+    updated_config["pre_trained_ckpt_path"] = "experiment/iu_x_ray_chen/cvt_21_to_distilgpt2/epoch=10-val_chen_cider" \
+                                              "=0.475024.ckpt"
 
     lr = 1e-5
     lr_nl = lr
@@ -18,6 +19,8 @@ def config():
     opt = "SGD"
 
     updated_config["mbatch_size"] = 1
+    updated_config["early_stopping"] = False
+    updated_config["max_epochs"] = 10
 
     updated_config["opt"] = {
         "module": "torch.optim",

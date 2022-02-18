@@ -98,9 +98,15 @@ pip install --upgrade -r requirements.txt --no-cache-dir
         sbatch: 1
         time_limit: 1-00:00:00
     ```
- - To run the job:
+ - To run a job for MIMIC-CXR-JPG with Chen's labels:
     ```shell script
     python3 main.py --task mimic_cxr_jpg_chen
+    ``` 
+   
+   or for IU X-Ray with Chen's labels:
+   
+    ```shell script
+    python3 main.py --task iu_x_ray_chen
     ``` 
 
 ##### Note: data from the job will be saved in the experiment directory.
