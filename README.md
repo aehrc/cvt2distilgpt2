@@ -1,6 +1,6 @@
 # CvT2DistilGPT2
 #### Improving Chest X-Ray Report Generation by Leveraging Warm-Starting
-- This repository houses the implementation of CvT2DistilGPT2 from [[1]](https://arxiv.org/abs/2201.09405) and is implemented in [PyTorch Lightning](https://pytorch-lightning.readthedocs.io/).
+- This repository houses the code for CvT2DistilGPT2 from [[1]](https://arxiv.org/abs/2201.09405) and is implemented in [PyTorch Lightning](https://pytorch-lightning.readthedocs.io/).
 - CvT2DistilGPT2 is an encoder-to-decoder model that was developed for chest X-ray report generation. 
 - Checkpoints for CvT2DistilGPT2 on MIMIC-CXR and IU X-Ray are available.
 - This implementation could be adapted for any image captioning task by modifying the datamodule.
