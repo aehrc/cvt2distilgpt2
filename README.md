@@ -23,7 +23,7 @@ Next, download the **datasets** and **checkpoints**, as describe below.
 
 ## Datasets   
 
-#### For MIMIC-CXR: 
+### For MIMIC-CXR: 
 1. Download MIMIC-CXR-JPG from: 
     ```
     https://physionet.org/content/mimic-cxr-jpg/2.0.0/
@@ -36,7 +36,7 @@ Next, download the **datasets** and **checkpoints**, as describe below.
     ```
 4. Place `annotations.json` in `dataset/mimic_cxr_chen` such that its path is `dataset/mimic_cxr_chen/annotations.json`
 
-#### For IU X-Ray: 
+### For IU X-Ray: 
 
 1. Download the [Chen *et al.*](https://aclanthology.org/2020.emnlp-main.112.pdf) labels and the chest X-rays in `png` format for IU X-Ray from:
     ```
@@ -47,7 +47,7 @@ Next, download the **datasets** and **checkpoints**, as describe below.
 ##### Note: the `dataset` directory can be changed for each task with the variable `dataset_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/mimic_cxr_jpg_chen/paths.yaml`
 
 ## Checkpoints
-#### CvT2DistilGPT2    
+### CvT2DistilGPT2    
  CvT2DistilGPT2 checkpoints for MIMIC-CXR and IU X-Ray can be found at: [https://doi.org/10.25919/1578-yp30](https://doi.org/10.25919/1578-yp30) (click on the *files* tab to download individual checkpoints). 
  
  Place the checkpoints in the experiment directory for each model of each task, e.g., place the checkpoint:
@@ -58,11 +58,11 @@ Next, download the **datasets** and **checkpoints**, as describe below.
   
 ##### Note: the `experiment` directory can be changed for each task with the variable `exp_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/iu_x_ray_chen/paths.yaml`
 
-#### CvT-21 Checkpoint
+### CvT-21 Checkpoint
 
 Download `CvT-21-384x384-IN-22k.pth` from this [Microsoft model zoo](https://onedrive.live.com/?authkey=%21AMXesxbtKwsdryE&id=56B9F9C97F261712%2115004&cid=56B9F9C97F261712) and place it in `checkpoints` such that its path is `checkpoints/CvT-21-384x384-IN-22k.pth`
 
-#### DistilGPT2 Checkpoint
+### DistilGPT2 Checkpoint
 
 Download `config.json`, `tokenizer.json`, `pytorch_model.bin`, and `vocab.json` from [https://huggingface.co/distilgpt2/tree/main](https://huggingface.co/distilgpt2/tree/main) and place them in `checkpoints/distilgpt2`, e.g., `checkpoints/distilgpt2/config.json`.
 
