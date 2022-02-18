@@ -120,7 +120,7 @@ To download everything, you can use `git clone https://huggingface.co/distilgpt2
     python3 main.py --task iu_x_ray_chen
     ``` 
 
-##### Note: data from the job will be saved in the experiment directory.
+##### Note: data from the job will be saved in the `experiment` directory.
 
 ## Reference
 [1] [Aaron Nicolson, Jason Dowling, and Bevan Koopman, *Improving Chest X-Ray Report Generation by Leveraging Warm-Starting*, Under review (January 2022)](https://arxiv.org/abs/2201.09405)
