@@ -120,7 +120,7 @@ def main(clargs, *args):
                 ckpt_path = get_best_ckpt(config['exp_dir'], config['monitor_mode'])
             print('Testing checkpoint: {}.'.format(ckpt_path))
             write_test_ckpt_path(ckpt_path, clargs.exp_dir)
-            transmodal = get_transmodal(config).load_from_checkpoint(checkpoint_path=ckpt_path, **model_config)
+            transmodal = get_transmodal(config).load_from_checkpoint(checkpoint_path=ckpt_path, **config)
 
         dataset, config = get_dataset(config)
         trainer = create_trainer(**config)

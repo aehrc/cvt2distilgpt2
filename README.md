@@ -46,7 +46,8 @@ Next, download the **datasets** and **checkpoints**, as describe below.
 
 ##### Note: the `dataset` directory can be changed for each task with the variable `dataset_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/mimic_cxr_jpg_chen/paths.yaml`
 
-## CvT2DistilGPT2 Checkpoints   
+## Checkpoints
+#### CvT2DistilGPT2    
  CvT2DistilGPT2 checkpoints for MIMIC-CXR and IU X-Ray can be found at: [https://doi.org/10.25919/kr3t-jk56](https://doi.org/10.25919/kr3t-jk56) (click on the *files* tab to download individual checkpoints). 
  
  Place the checkpoints in the experiment directory for each model of each task, e.g., place the checkpoint:
@@ -57,13 +58,13 @@ Next, download the **datasets** and **checkpoints**, as describe below.
   
 ##### Note: the `experiment` directory can be changed for each task with the variable `exp_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/iu_x_ray_chen/paths.yaml`
 
-## CvT-21 Checkpoint
+#### CvT-21 Checkpoint
 
 Download `CvT-21-384x384-IN-22k.pth` from this [Microsoft model zoo](https://onedrive.live.com/?authkey=%21AMXesxbtKwsdryE&id=56B9F9C97F261712%2115004&cid=56B9F9C97F261712) and place it in `checkpoints` such that its path is `checkpoints/CvT-21-384x384-IN-22k.pth`
 
-## DistilGPT2 Checkpoint
+#### DistilGPT2 Checkpoint
 
-Download `config.json`, `tokenizer.json`, `pytorch_model.bin`, and `vocab.json` from (https://huggingface.co/distilgpt2/tree/main)[https://huggingface.co/distilgpt2/tree/main] and place them in `checkpoints/distilgpt2`, e.g., `checkpoints/distilgpt2/config.json`.
+Download `config.json`, `tokenizer.json`, `pytorch_model.bin`, and `vocab.json` from [https://huggingface.co/distilgpt2/tree/main](https://huggingface.co/distilgpt2/tree/main) and place them in `checkpoints/distilgpt2`, e.g., `checkpoints/distilgpt2/config.json`.
 
 To download everything, you can use `git clone https://huggingface.co/distilgpt2` (note that `git lfs install` is needed).
 
@@ -125,6 +126,6 @@ To download everything, you can use `git clone https://huggingface.co/distilgpt2
 [1] [Aaron Nicolson, Jason Dowling, and Bevan Koopman, *Improving Chest X-Ray Report Generation by Leveraging Warm-Starting*, Under review (January 2022)](https://arxiv.org/abs/2201.09405)
 
 ## Help
-If you needd help, please leave an issue and we will get back to you as soon as possible.
+If you need help, please leave an issue and we will get back to you as soon as possible.
 
 
