@@ -61,15 +61,15 @@ Next, download the **datasets** and **checkpoints**, as describe below.
 
 Note: this is only needed if you want to perform training.  
 
-Download `CvT-21-384x384-IN-22k.pth` from this [Microsoft model zoo](https://onedrive.live.com/?authkey=%21AMXesxbtKwsdryE&id=56B9F9C97F261712%2115004&cid=56B9F9C97F261712) and place it in `data/checkpoints` such that its path is `data/checkpoints/CvT-21-384x384-IN-22k.pth`
+Download `CvT-21-384x384-IN-22k.pth` from this [Microsoft model zoo](https://onedrive.live.com/?authkey=%21AMXesxbtKwsdryE&id=56B9F9C97F261712%2115004&cid=56B9F9C97F261712) and place it in `checkpoints` such that its path is `checkpoints/CvT-21-384x384-IN-22k.pth`
 
 ## DistilGPT2 Checkpoint
 
-Download `config.json`, `tokenizer.json`, and `vocab.json` from (https://huggingface.co/distilgpt2/tree/main)[https://huggingface.co/distilgpt2/tree/main] and place them in `data/checkpoints/distilgpt2`, e.g., `data/checkpoints/distilgpt2/config.json`.
+Download `config.json`, `tokenizer.json`, and `vocab.json` from (https://huggingface.co/distilgpt2/tree/main)[https://huggingface.co/distilgpt2/tree/main] and place them in `checkpoints/distilgpt2`, e.g., `checkpoints/distilgpt2/config.json`.
 
-For training, also download `pytorch_model.bin` and place it in `data/checkpoints/distilgpt2`
+For training, also download `pytorch_model.bin` and place it in `checkpoints/distilgpt2`
 
-To download everything, you can use `git clone https://huggingface.co/distilgpt2`.
+To download everything, you can use `git clone https://huggingface.co/distilgpt2` (note that `git lfs install` is needed).
 
 ## Instructions   
  - The model configurations for each task can be found in its `config` directory, e.g. `task/mimic_cxr_jpg_chen/config`.
