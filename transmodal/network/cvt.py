@@ -60,7 +60,7 @@ class CvT(Module):
         _update_config_from_file(config, args.cfg)
         self.cvt = build_model(config)
         checkpoint = torch.load(
-            os.path.join(ckpt_dir, "microsoft", "CvT", ckpt_name + ".pth"),
+            os.path.join(ckpt_dir, ckpt_name + ".pth"),
             map_location=torch.device('cpu') if not torch.cuda.is_available() else None,
         )
         self.cvt.load_state_dict(checkpoint)

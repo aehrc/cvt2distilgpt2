@@ -19,6 +19,7 @@ source venv/bin/activate
 pip install --upgrade pip
 pip install --upgrade -r requirements.txt --no-cache-dir
 ```
+Next, download the **datasets** and **checkpoints**, as describe below.
 
 ## Datasets   
 
@@ -27,13 +28,13 @@ pip install --upgrade -r requirements.txt --no-cache-dir
     ```
     https://physionet.org/content/mimic-cxr-jpg/2.0.0/
     ```
-2. Place in `dataset/mimic_cxr_jpg` such that `dataset/mimic_cxr_jpg/physionet.org/files/mimic-cxr-jpg/2.0.0/files`.
+2. Place the files in `dataset/mimic_cxr_jpg` so that the following path exists `dataset/mimic_cxr_jpg/physionet.org/files/mimic-cxr-jpg/2.0.0/files`.
 
 3. Download the [Chen *et al.*](https://aclanthology.org/2020.emnlp-main.112.pdf) labels for MIMIC-CXR from:
     ```
     https://drive.google.com/file/d/1DS6NYirOXQf8qYieSVMvqNwuOlgAbM_E/view?usp=sharing
     ```
-4. Place `annotations.json` in `dataset/mimic_cxr_chen` such that `dataset/mimic_cxr_chen/annotations.json`
+4. Place `annotations.json` in `dataset/mimic_cxr_chen` such that its path is `dataset/mimic_cxr_chen/annotations.json`
 
 #### For IU X-Ray: 
 
@@ -41,12 +42,12 @@ pip install --upgrade -r requirements.txt --no-cache-dir
     ```
     https://drive.google.com/file/d/1c0BXEuDy8Cmm2jfN0YYGkQxFZd2ZIoLg/view
     ```
-2. Place files into `dataset/iu_x-ray_chen` such that `dataset/iu_x-ray_chen/annotations.json` and `dataset/iu_x-ray_chen/images`.
+2. Place the files into `dataset/iu_x-ray_chen` such that their paths are `dataset/iu_x-ray_chen/annotations.json` and `dataset/iu_x-ray_chen/images`.
 
 ##### Note: the `dataset` directory can be changed for each task with the variable `dataset_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/mimic_cxr_jpg_chen/paths.yaml`
 
-## Checkpoints   
- The checkpoints for MIMIC-CXR and IU X-Ray can be found at: [https://doi.org/10.25919/kr3t-jk56](https://doi.org/10.25919/kr3t-jk56) (click on the *files* tab to download individual checkpoints). 
+## CvT2DistilGPT2 Checkpoints   
+ CvT2DistilGPT2 checkpoints for MIMIC-CXR and IU X-Ray can be found at: [https://doi.org/10.25919/kr3t-jk56](https://doi.org/10.25919/kr3t-jk56) (click on the *files* tab to download individual checkpoints). 
  
  Place the checkpoints in the experiment directory for each model of each task, e.g., place the checkpoint:
   
@@ -56,6 +57,19 @@ pip install --upgrade -r requirements.txt --no-cache-dir
   
 ##### Note: the `experiment` directory can be changed for each task with the variable `exp_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/iu_x_ray_chen/paths.yaml`
 
+## CvT-21 Checkpoint
+
+Note: this is only needed if you want to perform training.  
+
+Download `CvT-21-384x384-IN-22k.pth` from this [Microsoft model zoo](https://onedrive.live.com/?authkey=%21AMXesxbtKwsdryE&id=56B9F9C97F261712%2115004&cid=56B9F9C97F261712) and place it in `data/checkpoints` such that its path is `data/checkpoints/CvT-21-384x384-IN-22k.pth`
+
+## DistilGPT2 Checkpoint
+
+Download `config.json`, `tokenizer.json`, and `vocab.json` from (https://huggingface.co/distilgpt2/tree/main)[https://huggingface.co/distilgpt2/tree/main] and place them in `data/checkpoints/distilgpt2`, e.g., `data/checkpoints/distilgpt2/config.json`.
+
+For training, also download `pytorch_model.bin` and place it in `data/checkpoints/distilgpt2`
+
+To download everything, you can use `git clone https://huggingface.co/distilgpt2`.
 
 ## Instructions   
  - The model configurations for each task can be found in its `config` directory, e.g. `task/mimic_cxr_jpg_chen/config`.
@@ -114,5 +128,7 @@ pip install --upgrade -r requirements.txt --no-cache-dir
 ## Reference
 [1] [Aaron Nicolson, Jason Dowling, and Bevan Koopman, *Improving Chest X-Ray Report Generation by Leveraging Warm-Starting*, Under review (January 2022)](https://arxiv.org/abs/2201.09405)
 
+## Help
+If you needd help, please leave an issue and we will get back to you as soon as possible.
 
 

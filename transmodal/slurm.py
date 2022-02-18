@@ -298,8 +298,9 @@ class SlurmCluster(object):
         if self.notify_on_fail:
             mail_type.append('FAIL')
         if len(mail_type) > 0:
-            sub_commands.append('#SBATCH --mail-type={}'.format(','.join(mail_type)))
-            sub_commands.append('#SBATCH --mail-user={}'.format(self.email))
+            if self.email:
+                sub_commands.append('#SBATCH --mail-type={}'.format(','.join(mail_type)))
+                sub_commands.append('#SBATCH --mail-user={}'.format(self.email))
 
         # Add custom sbatch commands
         for (cmd, value) in self.slurm_commands:

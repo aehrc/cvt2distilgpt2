@@ -196,7 +196,7 @@ if __name__ == '__main__':
 
                 # Email job status
                 cluster.notify_job_status(
-                    email='aaron.nicolson@csiro.au', on_done=True, on_fail=True
+                    email=None, on_done=True, on_fail=True
                 )
 
                 job_display_name = '_'.join([clargs.ver, clargs.task])
