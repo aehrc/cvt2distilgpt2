@@ -126,6 +126,7 @@ def get_transmodal(model_config: Dict[str, Any], train=False) -> LightningModule
             checkpoint_path=ckpt_path,
             **model_config,
         )
+
     else:
         transmodal = Transmodal(**model_config)
 
