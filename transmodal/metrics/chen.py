@@ -165,7 +165,7 @@ class ChenCaption(Metric):
                     for row in zip(predictions.values(), labels.values(), self.ids):
                         writer.writerow([row[0][0], row[1][0], row[2]])
 
-            if torch.distributed.is_initialized():
+            if not torch.distributed.is_initialized():
                 save_reports()
             elif torch.distributed.get_rank() == 0:
                 save_reports()
