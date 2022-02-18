@@ -1,4 +1,3 @@
-# Note: this repo is under early development
 # CvT2DistilGPT2
 #### Improving Chest X-Ray Report Generation by Leveraging Warm-Starting
 - This repository houses the implementation of CvT2DistilGPT2 from [[1]](https://arxiv.org/abs/2201.09405) and is implemented in [PyTorch Lightning](https://pytorch-lightning.readthedocs.io/).
@@ -12,6 +11,7 @@
 | <p align="center"> <a>CvT2DistilGPT2 for MIMIC-CXR. Q, K, and V are the queries, keys, and values, respectively, for multi-head attention. * indicates that the linear layers for Q, K, and V are replaced with the convolutional layers depicted below the multi-head attention module. `[BOS]` is the beginning-of-sentence special token. `N_l` is the number of layers for each stage, where `N_l=1`, `N_l=4`, and `N_l=16` for the first, second, and third stage, respectively. The head for DistilGPT2 is the same used for language modelling. Subwords produced by DistilGPT2 are separated by a vertical bar.</a> </p> |
 
 ## Installation
+After cloning the repository, install the required packages in a virtual environment.
 The required packages are located in `requirements.txt`. It is recommended that these are installed in a `virtualenv`:
 ```shell script
 python3 -m venv --system-site-packages venv
@@ -46,8 +46,15 @@ pip install --upgrade -r requirements.txt --no-cache-dir
 ##### Note: the `dataset` directory can be changed for each task with the variable `dataset_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/mimic_cxr_jpg_chen/paths.yaml`
 
 ## Checkpoints   
- The checkpoints for MIMIC-CXR and IU X-Ray can be found at (the download link is located at the top right): [https://doi.org/10.25919/hbqx-2p71](https://doi.org/10.25919/hbqx-2p71). Place the checkpoints in the experiment directory for each version of each task, e.g., `experiment/mimic_cxr_jpg_chen/cvt_21_to_gpt2_scst/epoch=0-val_chen_cider=0.410965.ckpt`
-##### Note: the `experiment` directory can be changed for each task with the variable `exp_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/mimic_cxr_jpg_chen/paths.yaml`
+ The checkpoints for MIMIC-CXR and IU X-Ray can be found at: [https://doi.org/10.25919/kr3t-jk56](https://doi.org/10.25919/kr3t-jk56) (click on the *files* tab to download individual checkpoints). 
+ 
+ Place the checkpoints in the experiment directory for each model of each task, e.g., place the checkpoint:
+  
+ ![](docs/example.png)
+
+  at the path: `experiment/mimic_cxr_jpg_chen/cvt_21_to_gpt2_scst/epoch=0-val_chen_cider=0.410965.ckpt`.
+  
+##### Note: the `experiment` directory can be changed for each task with the variable `exp_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/iu_x_ray_chen/paths.yaml`
 
 
 ## Instructions   
@@ -97,7 +104,6 @@ pip install --upgrade -r requirements.txt --no-cache-dir
     ``` 
 
 ##### Note: data from the job will be saved in the experiment directory.
-
 
 ## Reference
 [1] [Aaron Nicolson, Jason Dowling, and Bevan Koopman, *Improving Chest X-Ray Report Generation by Leveraging Warm-Starting*, Under review (January 2022)](https://arxiv.org/abs/2201.09405)
