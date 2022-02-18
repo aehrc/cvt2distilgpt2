@@ -1,0 +1,7 @@
+cvt_21_to_distilgpt2_scst:
+    train: 0
+    test: 1
+    debug: 0
+    num_nodes: 1
+    num_gpus: 1
+    num_workers: 5

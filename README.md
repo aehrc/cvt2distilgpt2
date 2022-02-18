@@ -33,7 +33,7 @@ pip install --upgrade -r requirements.txt --no-cache-dir
     ```
     https://drive.google.com/file/d/1DS6NYirOXQf8qYieSVMvqNwuOlgAbM_E/view?usp=sharing
     ```
-4. Place `annotations.json` in `dataset/mimic_cxr_chen`
+4. Place `annotations.json` in `dataset/mimic_cxr_chen` such that `dataset/mimic_cxr_chen/annotations.json`
 
 #### For IU X-Ray: 
 
@@ -41,7 +41,7 @@ pip install --upgrade -r requirements.txt --no-cache-dir
     ```
     https://drive.google.com/file/d/1c0BXEuDy8Cmm2jfN0YYGkQxFZd2ZIoLg/view
     ```
-4. Place files into `dataset/iu_x-ray_chen` such that `dataset/iu_x-ray_chen/annotations.json` and `dataset/iu_x-ray_chen/images`.
+2. Place files into `dataset/iu_x-ray_chen` such that `dataset/iu_x-ray_chen/annotations.json` and `dataset/iu_x-ray_chen/images`.
 
 ##### Note: the `dataset` directory can be changed for each task with the variable `dataset_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/mimic_cxr_jpg_chen/paths.yaml`
 
