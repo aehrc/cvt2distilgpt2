@@ -87,7 +87,7 @@ def get_dataset(config: Dict[str, Any]) -> Tuple[LightningDataModule, Dict[str, 
     return dataset, config
 
 
-def get_transmodal(model_config: Dict[str, Any]) -> LightningModule:
+def get_transmodal(model_config: Dict[str, Any], train=False) -> LightningModule:
     """
     Create an instance of the task specific or standard multimodal model class. Handles
     loading model checkpoints.
@@ -106,7 +106,7 @@ def get_transmodal(model_config: Dict[str, Any]) -> LightningModule:
     else:
         from transmodal.model import Transmodal
 
-    if "pre_trained_ckpt_path" in model_config:
+    if ("pre_trained_ckpt_path" in model_config) and train:
         ckpt_path = model_config["pre_trained_ckpt_path"]
         # raise NotImplementedError
 

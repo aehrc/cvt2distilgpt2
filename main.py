@@ -39,7 +39,7 @@ def objective(config):
     trainer = create_trainer(**config)
 
     # Multimodal model instance
-    transmodal = get_transmodal(config)
+    transmodal = get_transmodal(config, train=True)
 
     # Train
     trainer.fit(transmodal, datamodule=dataset)
