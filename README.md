@@ -14,7 +14,7 @@
 
 ## Installation
 After cloning the repository, install the required packages in a virtual environment.
-The required packages are located in `requirements.txt`. It is recommended that these are installed in a `virtualenv`:
+The required packages are located in `requirements.txt`:
 ```shell script
 python3 -m venv --system-site-packages venv
 source venv/bin/activate
