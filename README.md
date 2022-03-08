@@ -50,7 +50,7 @@ Next, download the **datasets** and **checkpoints**, as describe below.
 
 ## Checkpoints
 ### CvT2DistilGPT2    
- CvT2DistilGPT2 checkpoints for MIMIC-CXR and IU X-Ray can be found at: [https://doi.org/10.25919/1578-yp30](https://doi.org/10.25919/1578-yp30) (click on the *files* tab to download individual checkpoints). 
+ CvT2DistilGPT2 checkpoints for MIMIC-CXR and IU X-Ray can be found at: [https://doi.org/10.25919/64wx-0950](https://doi.org/10.25919/64wx-0950) (click on the *files* tab to download individual checkpoints). 
  
  Place the checkpoints in the experiment directory for each model of each task, e.g., place the checkpoint:
   
