@@ -273,3 +273,17 @@ def gpu_clean_up(target_util=0.01, delay_s=5, verbose=False):
                 print(f"GPU cleanup: Utilisation on GPU {gpu.id} is now {gpu.memoryUtil:0.3f}. "
                       f"Time taken was {(time.time() - stt)} seconds.")
         time.sleep(delay_s)
+
+
+def enumerated_save_path(save_dir, save_name, extension):
+    save_path = os.path.join(save_dir, save_name + extension)
+    assert '.' in extension, 'No period in extension.'
+    if os.path.isfile(save_path):
+        count = 2
+        while True:
+            save_path = os.path.join(save_dir, save_name + "_" + str(count) + extension)
+            count += 1
+            if not os.path.isfile(save_path):
+                break
+
+    return save_path

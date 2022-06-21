@@ -209,6 +209,10 @@ class Transmodal(LightningModule):
                 v["kwargs"]["exp_dir"] = self.exp_dir
             if "softmax" not in metrics_config[k]:
                 metrics_config[k]["softmax"] = False
+            if 'ckpt_dir' in inspect.signature(metric).parameters:
+                v['kwargs']['ckpt_dir'] = self.ckpt_zoo_dir
+            if 'device' in inspect.signature(metric).parameters:
+                v['kwargs']['device'] = self.device
             setattr(self, set + "_" + k.lower(), metric(**v["kwargs"]))
             getattr(self, set + "_" + k.lower()).to(self.device)
             if hasattr(getattr(self, set + "_" + k.lower()), "requires_normaliser"):
