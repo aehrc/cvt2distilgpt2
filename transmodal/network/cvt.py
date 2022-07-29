@@ -74,7 +74,7 @@ class CvT(Module):
             for n, p in self.cvt.named_parameters():
                 p.requires_grad = False
 
-    def forward(self, images: torch.FloatTensor) -> Union[dict[str, Tensor], dict[str, Union[Tensor, Any]]]:
+    def forward(self, images: torch.FloatTensor):
         """
         Forward propagation.
 
