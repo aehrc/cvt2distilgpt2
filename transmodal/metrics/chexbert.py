@@ -32,6 +32,9 @@ CONDITIONS = [
 
 class ClinicalEfficacy(NaturalLanguage):
 
+    is_differentiable = False
+    full_state_update = False
+
     def __init__(
         self,
         device,

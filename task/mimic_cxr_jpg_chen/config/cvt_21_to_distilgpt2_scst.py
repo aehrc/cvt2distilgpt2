@@ -1,17 +1,26 @@
 from config.cvt_21_to_distilgpt2_chexbert import config as external_config
+import os
+import yaml
 
 def config():
     updated_config = external_config(multi_image_input=False)
 
     updated_config["self_critical"] = True
 
+    with open(os.path.join('task', 'mimic_cxr_jpg_chen', 'paths.yaml')) as f:
+        paths = yaml.load(f, Loader=yaml.FullLoader)
+
     updated_config["reward"] = {
         "module": "transmodal.rewards.cider",
         "definition": "ChenCOCOCIDErReward",
-        "kwargs": {"labels_file_path": "dataset/mimic_cxr_chen/annotation.json"}
+        "kwargs": {"labels_file_path": os.path.join(paths['dataset_dir'], "mimic_cxr_chen", "annotation.json")}
     }
-    updated_config["pre_trained_ckpt_path"] = "experiment/mimic_cxr_jpg_chen/cvt_21_to_distilgpt2/epoch=8" \
-                                              "-val_chen_cider=0.425092.ckpt"
+    updated_config["pre_trained_ckpt_path"] = os.path.join(
+        paths['exp_dir'],
+        "mimic_cxr_jpg_chen",
+        "cvt_21_to_distilgpt2",
+        "epoch=8-val_chen_cider=0.425092.ckpt",
+    )
 
     lr = 1e-5
     lr_nl = lr

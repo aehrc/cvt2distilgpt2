@@ -17,6 +17,10 @@ from torch import Tensor
 from torch.nn import Module
 
 class ChenCaption(Metric):
+
+    is_differentiable = False
+    full_state_update = False
+
     def __init__(
             self,
             metrics=["bleu", "cider", "meteor", "rouge", "spice"],
