@@ -84,6 +84,12 @@ def get_config(clargs: Namespace) -> Dict[str, Any]:
             "Only tokenizer_init or encoder_tokenizer_init and "
             "decoder_tokenizer_init can be specified, not both.",
         )
+
+        assert isinstance(config["ckpt_zoo_dir"], str), f'ckpt_zoo_dir must be a string, got: ' \
+                                                        f'{type(config["ckpt_zoo_dir"])} instead.'
+        assert isinstance(config["tokenizer_init"], str), f'tokenizer_init must be a string, got: ' \
+                                                          f'{type(config["tokenizer_init"])} instead.'
+
         config["tokenizer"] = AutoTokenizer.from_pretrained(
             os.path.join(config["ckpt_zoo_dir"], config["tokenizer_init"]),
             local_files_only=True,

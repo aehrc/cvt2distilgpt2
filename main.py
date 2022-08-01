@@ -1,15 +1,15 @@
 from argparse import Namespace
 from pathlib import Path
-from ray import tune
-from ray.tune import CLIReporter
-from ray_lightning.tune import get_tune_ddp_resources
+# from ray import tune
+# from ray.tune import CLIReporter
+# from ray_lightning.tune import get_tune_ddp_resources
 from transmodal.command_line_arguments import get_clargs
 from transmodal.config import get_config
 from transmodal.slurm import SlurmCluster
 from transmodal.ext.collect_env_details import main as collect_env_details
-from transmodal.tune.callbacks import GarbageCollection
+# from transmodal.tune.callbacks import GarbageCollection
 from transmodal.trainer import create_trainer
-from transmodal.tune.trial_progress import ModifiedTrialProgressCallback
+# from transmodal.tune.trial_progress import ModifiedTrialProgressCallback
 from transmodal.utils import (
     checkpoint_exists,
     get_best_ckpt,
@@ -56,48 +56,6 @@ def main(clargs, *args):
 
     # Get the model configuration
     config = get_config(clargs)
-
-    # Hyperparameter optimisation
-    if clargs.hyper:
-        ray.init(
-            address='auto',
-            _node_ip_address=os.environ['IP_HEAD_ADDR'].split(':')[0],
-            _redis_password=os.environ['REDIS_PASSWORD'],
-        )
-        resume = clargs.resumable if checkpoint_exists(os.path.join(config['exp_dir'], 'hyperparameter_search')) \
-            else False
-        sampler = getattr(
-            importlib.import_module(config['sampler']['module']), config['sampler']['definition']
-        )(**config['sampler']['kwargs']) if 'sampler' in config else None
-        pruner = getattr(
-            importlib.import_module(config['pruner']['module']), config['pruner']['definition']
-        )(**config['pruner']['kwargs']) if 'pruner' in config else None
-
-        print(f'Resources per trial: {config["gpus_per_trial"]}')
-
-        analysis = tune.run(
-            objective,
-            config=config,
-            search_alg=sampler,
-            scheduler=pruner,
-            num_samples=config['num_trials'],
-            local_dir=config['exp_dir'],
-            resources_per_trial=get_tune_ddp_resources(
-                num_workers=config['gpus_per_trial'], use_gpu=True
-            ),
-            metric=config['monitor'],
-            mode=config['monitor_mode'],
-            resume=resume,
-            name='hyperparameter_search',
-            trial_dirname_creator=trial_dirname_string,
-            callbacks=[ModifiedTrialProgressCallback(), GarbageCollection()],
-            progress_reporter=CLIReporter(metric_columns={}, parameter_columns={}),
-            verbose=2,
-            # fail_fast=True,
-            # _remote=True,
-        )
-        print(f'Best trial was: {analysis.get_best_trial(scope="all")}')
-        print(f'Best hyperparameters found were: {analysis.get_best_config(scope="all")}')
 
     # Train
     if clargs.train:
