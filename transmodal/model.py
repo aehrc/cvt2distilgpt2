@@ -130,45 +130,13 @@ class Transmodal(LightningModule):
         self.coco_metrics = coco_metrics
         self.accelerator = accelerator
 
-        # Create UMLS CUI & judgement to index dataframe
-        # if self.cuis:
-        #     if not hasattr(self, "cui_judgement_to_idx"):
-        #         self.cui_judgement_to_idx = pd.DataFrame(
-        #             columns=["Negative", "Uncertain", "Positive"]
-        #         )
-        #         self.cui_judgement_to_idx.index.name = "CUI"
-        #
-        #     if not self.cuis:
-        #         warnings.warn(
-        #             "The list of CUIs is empty for rank {}.".format(self.global_rank)
-        #         )
-        #
-        #     for cui in self.cuis:
-        #         if cui not in self.cui_judgement_to_idx.index:
-        #             negative_index = len(self.cui_judgement_to_idx.index) * 3
-        #             self.cui_judgement_to_idx = self.cui_judgement_to_idx.append(
-        #                 pd.Series(
-        #                     {
-        #                         "Negative": negative_index,
-        #                         "Uncertain": negative_index + 1,
-        #                         "Positive": negative_index + 2,
-        #                     },
-        #                     name=cui,
-        #                 ),
-        #             )
-        #
-        #     self.num_classes = self.cui_judgement_to_idx.size
-        #     print(
-        #         "Number of classes for concept judgement: {}".format(self.num_classes)
-        #     )
-
         # Networks
         for (i, j) in self.networks.items():
             Network = getattr(importlib.import_module(j["module"]), j["definition"])
             setattr(
                 self,
                 i,
-                Network(ckpt_dir=self.ckpt_zoo_dir, **j["kwargs"]), # num_classes=self.num_classes,
+                Network(ckpt_dir=self.ckpt_zoo_dir, **j["kwargs"]),  # num_classes=self.num_classes,
             )
             if print_model:
                 print(getattr(self, i))
