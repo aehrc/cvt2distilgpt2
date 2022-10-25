@@ -217,11 +217,11 @@ class Transmodal(LightningModule):
                 y_task = y[v["labels"]]
                 if v["softmax"]:  # Apply softmax to y_hat for metrics.
                     y_hat = softmax(y_hat, dim=-1)
-                scores = getattr(self, metric)(y_hat_task, y_task, id)
+                scores = getattr(self, metric).update(y_hat_task, y_task, id)
             else:
                 if v["softmax"]:  # Apply softmax to y_hat for metrics.
                     y_hat = softmax(y_hat, dim=-1)
-                scores = getattr(self, metric)(y_hat, y, id)
+                scores = getattr(self, metric).update(y_hat, y, id)
             if isinstance(scores, dict):
                 metrics.update({f"{stage}_{k}": v for k, v in scores.items()})
             elif scores is not None:
@@ -246,15 +246,15 @@ class Transmodal(LightningModule):
         """
         for k, v in getattr(self, f"{stage}_metrics").items():
             metric = stage + "_" + k.lower()
-            if not getattr(self, metric).compute_on_step:
-                scores = getattr(self, metric).compute()
-                if torch.distributed.is_initialized():
-                    torch.distributed.barrier()
-                getattr(self, metric).reset()  # PTL does not seem to reset the states if compute_on_step=False.
-                if isinstance(scores, dict):
-                    metrics.update({f"{stage}_{k}": v for k, v in scores.items()})
-                elif scores is not None:
-                    metrics[metric] = scores
+            # if not getattr(self, metric).compute_on_step:
+            scores = getattr(self, metric).compute()
+            if torch.distributed.is_initialized():
+                torch.distributed.barrier()
+            getattr(self, metric).reset()  # PTL does not seem to reset the states if compute_on_step=False.
+            if isinstance(scores, dict):
+                metrics.update({f"{stage}_{k}": v for k, v in scores.items()})
+            elif scores is not None:
+                metrics[metric] = scores
         self.log_dict(metrics, on_step=on_step, on_epoch=on_epoch)
 
     def forward(self, **kwargs):
