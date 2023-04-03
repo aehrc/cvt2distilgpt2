@@ -34,7 +34,15 @@ Next, download the **datasets** and **checkpoints**, as describe below.
 
 3. Download the [Chen *et al.*](https://aclanthology.org/2020.emnlp-main.112.pdf) labels for MIMIC-CXR from:
     ```
-    https://drive.google.com/file/d/1DS6NYirOXQf8qYieSVMvqNwuOlgAbM_E/view?usp=sharing
+    https://github.com/cuhksz-nlp/R2Gen
+    ```
+    Or
+    ```
+    https://github.com/cuhksz-nlp/R2GenCMN
+    ```
+    Or
+    ```
+    https://www.dropbox.com/s/ojcc0kvgzzpblf8/dataset.zip?dl=0
     ```
 4. Place `annotations.json` in `dataset/mimic_cxr_chen` such that its path is `dataset/mimic_cxr_chen/annotations.json`
 
@@ -42,8 +50,17 @@ Next, download the **datasets** and **checkpoints**, as describe below.
 
 1. Download the [Chen *et al.*](https://aclanthology.org/2020.emnlp-main.112.pdf) labels and the chest X-rays in `png` format for IU X-Ray from:
     ```
-    https://drive.google.com/file/d/1c0BXEuDy8Cmm2jfN0YYGkQxFZd2ZIoLg/view
+    https://github.com/cuhksz-nlp/R2Gen
     ```
+    Or
+    ```
+    https://github.com/cuhksz-nlp/R2GenCMN
+    ```
+    Or
+    ```
+    https://www.dropbox.com/s/ojcc0kvgzzpblf8/dataset.zip?dl=0
+    ```
+
 2. Place the files into `dataset/iu_x-ray_chen` such that their paths are `dataset/iu_x-ray_chen/annotations.json` and `dataset/iu_x-ray_chen/images`.
 
 ##### Note: the `dataset` directory can be changed for each task with the variable `dataset_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/mimic_cxr_jpg_chen/paths.yaml`
