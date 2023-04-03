@@ -84,9 +84,8 @@ def generate(
             max_length=max_length,
             eos_token_id=eos_token_id,
             pad_token_id=pad_token_id,
-            # encoder_hidden_states=encoder_hidden_states,
-            # encoder_attention_mask=encoder_attention_mask,
-            encoder_outputs=encoder_outputs,
+            encoder_hidden_states=encoder_hidden_states,
+            encoder_attention_mask=encoder_attention_mask,
         )
 
     # Autoregresively generate predictions
@@ -104,16 +103,14 @@ def generate(
         encoder_outputs=encoder_outputs,
     )
 
-
 def sample_log_probs(
     decoder,
     input_ids,
     max_length,
     eos_token_id,
     pad_token_id,
-    encoder_outputs,
-    # encoder_hidden_states,
-    # encoder_attention_mask,
+    encoder_hidden_states,
+    encoder_attention_mask,
 ):
     '''
     Generates sequences using multinomial sampling. Returns the
@@ -125,13 +122,10 @@ def sample_log_probs(
         max_length - maximum allowed sequence length.
         eos_token_id - index of the end-of-sentence token.
         pad_token_id - index of the padding token.
-        encoder_outputs - encoder_hidden_stats and encoder_attention mask wrapped in a huggingface
-            ModelOutput class.
-
-        # encoder_hidden_states - sequence of hidden states from the output of
-        #     the last layer of the encoder.
-        # encoder_attention_mask - mask to avoid performing cross-attention on
-        #     the padding token indices of the encoder input.
+        encoder_hidden_states - sequence of hidden states from the output of
+            the last layer of the encoder.
+        encoder_attention_mask - mask to avoid performing cross-attention on
+            the padding token indices of the encoder input.
 
     Returns:
         Dictionary containing the sample sequences and the log-probabilities.
@@ -145,10 +139,9 @@ def sample_log_probs(
     while cur_len < max_length:
 
         outputs = decoder(
-            decoder_input_ids=input_ids[:, -1:],
-            encoder_outputs=encoder_outputs,
-            # encoder_hidden_states=encoder_hidden_states,
-            # encoder_attention_mask=encoder_attention_mask,
+            input_ids=input_ids[:, -1:],
+            encoder_hidden_states=encoder_hidden_states,
+            encoder_attention_mask=encoder_attention_mask,
             use_cache=True,
             past_key_values=past_key_values,
             return_dict=True,

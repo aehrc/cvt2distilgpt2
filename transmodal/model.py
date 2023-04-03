@@ -130,13 +130,45 @@ class Transmodal(LightningModule):
         self.coco_metrics = coco_metrics
         self.accelerator = accelerator
 
+        # Create UMLS CUI & judgement to index dataframe
+        # if self.cuis:
+        #     if not hasattr(self, "cui_judgement_to_idx"):
+        #         self.cui_judgement_to_idx = pd.DataFrame(
+        #             columns=["Negative", "Uncertain", "Positive"]
+        #         )
+        #         self.cui_judgement_to_idx.index.name = "CUI"
+        #
+        #     if not self.cuis:
+        #         warnings.warn(
+        #             "The list of CUIs is empty for rank {}.".format(self.global_rank)
+        #         )
+        #
+        #     for cui in self.cuis:
+        #         if cui not in self.cui_judgement_to_idx.index:
+        #             negative_index = len(self.cui_judgement_to_idx.index) * 3
+        #             self.cui_judgement_to_idx = self.cui_judgement_to_idx.append(
+        #                 pd.Series(
+        #                     {
+        #                         "Negative": negative_index,
+        #                         "Uncertain": negative_index + 1,
+        #                         "Positive": negative_index + 2,
+        #                     },
+        #                     name=cui,
+        #                 ),
+        #             )
+        #
+        #     self.num_classes = self.cui_judgement_to_idx.size
+        #     print(
+        #         "Number of classes for concept judgement: {}".format(self.num_classes)
+        #     )
+
         # Networks
         for (i, j) in self.networks.items():
             Network = getattr(importlib.import_module(j["module"]), j["definition"])
             setattr(
                 self,
                 i,
-                Network(ckpt_dir=self.ckpt_zoo_dir, **j["kwargs"]),  # num_classes=self.num_classes,
+                Network(ckpt_dir=self.ckpt_zoo_dir, **j["kwargs"]), # num_classes=self.num_classes,
             )
             if print_model:
                 print(getattr(self, i))
@@ -217,11 +249,11 @@ class Transmodal(LightningModule):
                 y_task = y[v["labels"]]
                 if v["softmax"]:  # Apply softmax to y_hat for metrics.
                     y_hat = softmax(y_hat, dim=-1)
-                scores = getattr(self, metric).update(y_hat_task, y_task, id)
+                scores = getattr(self, metric)(y_hat_task, y_task, id)
             else:
                 if v["softmax"]:  # Apply softmax to y_hat for metrics.
                     y_hat = softmax(y_hat, dim=-1)
-                scores = getattr(self, metric).update(y_hat, y, id)
+                scores = getattr(self, metric)(y_hat, y, id)
             if isinstance(scores, dict):
                 metrics.update({f"{stage}_{k}": v for k, v in scores.items()})
             elif scores is not None:
@@ -246,15 +278,15 @@ class Transmodal(LightningModule):
         """
         for k, v in getattr(self, f"{stage}_metrics").items():
             metric = stage + "_" + k.lower()
-            # if not getattr(self, metric).compute_on_step:
-            scores = getattr(self, metric).compute()
-            if torch.distributed.is_initialized():
-                torch.distributed.barrier()
-            getattr(self, metric).reset()  # PTL does not seem to reset the states if compute_on_step=False.
-            if isinstance(scores, dict):
-                metrics.update({f"{stage}_{k}": v for k, v in scores.items()})
-            elif scores is not None:
-                metrics[metric] = scores
+            if not getattr(self, metric).compute_on_step:
+                scores = getattr(self, metric).compute()
+                if torch.distributed.is_initialized():
+                    torch.distributed.barrier()
+                getattr(self, metric).reset()  # PTL does not seem to reset the states if compute_on_step=False.
+                if isinstance(scores, dict):
+                    metrics.update({f"{stage}_{k}": v for k, v in scores.items()})
+                elif scores is not None:
+                    metrics[metric] = scores
         self.log_dict(metrics, on_step=on_step, on_epoch=on_epoch)
 
     def forward(self, **kwargs):

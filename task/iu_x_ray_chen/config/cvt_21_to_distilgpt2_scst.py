@@ -39,7 +39,7 @@ def config():
             "group_1": {
                 "modules": {
                     "encoder_projection": {},
-                    "decoder.encoder_decoder.decoder.transformer": {"include": ["crossattention"]},
+                    "decoder.decoder.transformer": {"include": ["crossattention"]},
                 },
                 "kwargs": {"lr": lr},
             },
@@ -48,7 +48,7 @@ def config():
                 "kwargs": {"lr": lr_i},
             },
             "group_3": {
-                "modules": {"decoder.encoder_decoder.decoder": {"exclude": ["crossattention"]}},
+                "modules": {"decoder.decoder": {"exclude": ["crossattention"]}},
                 "kwargs": {"lr": lr_nl},
             },
         },
