@@ -5,8 +5,6 @@
 - Its encoder is the Convolutional vision Transformer (CvT) warm-started with an ImageNet-21K checkpoint.
 - Its decoder is DistilGPT2 (which describes the architecture of the decoder as well as the checkpoint).
 - Checkpoints for CvT2DistilGPT2 on MIMIC-CXR and IU X-Ray are available.
-- This implementation could be adapted for any image captioning task by modifying the datamodule.
-
 
 |![](docs/figure.png)|
 |----|
