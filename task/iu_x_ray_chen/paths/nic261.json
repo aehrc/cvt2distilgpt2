@@ -1,6 +1,0 @@
-{
-  "exp_dir": "/datasets/work/hb-mlaifsp-mm/work/Experiments",
-  "dataset_dir": "/scratch1/nic261/Datasets",
-  "ckpt_zoo_dir": "/datasets/work/hb-mlaifsp-mm/work/Checkpoints",
-  "venv_path": "/datasets/work/hb-mlaifsp-mm/work/Environments/transmodal/bin/activate"
-}

@@ -1,6 +1,0 @@
-exp_dir: "experiment"
-dataset_dir: "dataset"
-ckpt_zoo_dir: "checkpoints"
-venv_path: "venv/bin/activate"
-
-

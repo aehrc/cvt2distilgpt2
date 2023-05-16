@@ -1,0 +1,33 @@
+exp_dir: experiments
+dataset_dir: datasets
+ckpt_zoo_dir: checkpoints
+# venv_path: venv/bin/activate  # If using a SLURM cluster, uncomment this line.
+
+devices: 1
+num_nodes: 1
+num_workers: 5
+strategy: ddp_find_unused_parameters_true
+
+module: cvt2distilgpt2_iu_x_ray_chen
+definition: CvT2DistilGPT2IUXRayChen
+
+test_ckpt_path: checkpoints/iu_x_ray_chen/cvt_21_to_distilgpt2/epoch=10-val_chen_cider=0.475024.ckpt
+
+encoder_lr: 5e-5
+decoder_lr: 5e-4
+mbatch_size: 4  
+every_n_epochs: 1
+
+monitor: 'val_chen_cider'
+monitor_mode: 'max'
+precision: 16
+decoder_max_len: 128
+num_test_beams: 4
+
+enable_progress_bar: True
+weights_summary: 'full'
+
+early_stopping: True
+patience: 10
+min_delta: 1e-4
+deterministic: False

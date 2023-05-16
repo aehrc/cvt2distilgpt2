@@ -1,7 +1,0 @@
-{
-  "labels_key": "label_ids",
-  "labels_gen_key": "labels",
-  "autoregressive": true,
-  "refresh_rate": 200,
-  "save_last": false
-}

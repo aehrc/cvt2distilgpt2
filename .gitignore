@@ -2,6 +2,7 @@
 .vscode/
 .neptune/
 
+ignore_*
 *.sav
 notes.txt
 plot.sh
