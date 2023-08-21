@@ -44,7 +44,7 @@ python -m pip install --upgrade -r requirements.txt --no-cache-dir
   
  ![](docs/example.png)
 
-  at the path: `checkpoints/mimic_cxr_jpg_chen/cvt_21_to_gpt2_scst/epoch=0-val_chen_cider=0.410965.ckpt`.
+  at the path: `checkpoints/mimic_cxr_jpg_chen/cvt_21_to_gpt2/epoch=8-val_chen_cider=0.425092.ckpt`.
   
 ##### Note: the `experiment` directory can be changed for each task with the variable `exp_dir` in `task/mimic_cxr_jpg_chen/paths.yaml` and `task/iu_x_ray_chen/paths.yaml`
 
