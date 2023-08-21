@@ -1,6 +1,23 @@
 # CvT2DistilGPT2
+```
+@article{nicolson_improving_2023,
+	title = {Improving chest {X}-ray report generation by leveraging warm starting},
+	issn = {0933-3657},
+	url = {https://www.sciencedirect.com/science/article/pii/S0933365723001471},
+	doi = {10.1016/j.artmed.2023.102633},
+	urldate = {2023-08-21},
+	journal = {Artificial Intelligence in Medicine},
+	author = {Nicolson, Aaron and Dowling, Jason and Koopman, Bevan},
+	month = aug,
+	year = {2023},
+	keywords = {Chest X-ray report generation, Image captioning, Multi-modal learning, Warm starting},
+	pages = {102633},
+}
+```
+
 #### Improving Chest X-Ray Report Generation by Leveraging Warm-Starting
-- This repository houses the code for CvT2DistilGPT2 from [[1]](https://arxiv.org/abs/2201.09405) and is implemented in [PyTorch Lightning](https://pytorch-lightning.readthedocs.io/).
+- This repository houses the code for CvT2DistilGPT2 from https://doi.org/10.1016/j.artmed.2023.102633.
+- Implemented in [PyTorch Lightning](https://pytorch-lightning.readthedocs.io/).
 - CvT2DistilGPT2 is an encoder-to-decoder model that was developed for chest X-ray report generation. 
 - Its encoder is the Convolutional vision Transformer (CvT) warm-started with an ImageNet-21K checkpoint.
 - Its decoder is DistilGPT2 (which describes the architecture of the decoder as well as the checkpoint).
@@ -21,7 +38,7 @@ python -m pip install --upgrade -r requirements.txt --no-cache-dir
 ```
 
 ## Model checkpoints:
- CvT2DistilGPT2 checkpoints for MIMIC-CXR and IU X-Ray can be found at: [https://doi.org/10.25919/64wx-0950](https://doi.org/10.25919/64wx-0950) (click on the *files* tab to download individual checkpoints). 
+ CvT2DistilGPT2 checkpoints for MIMIC-CXR and IU X-Ray can be found at: https://doi.org/10.25919/ng3g-aj81 (click on the *files* tab to download individual checkpoints). 
  
  Place the checkpoints in the checkpoint directory for each model of each task, e.g., place the checkpoint:
   
@@ -179,9 +196,6 @@ dlhpcstarter -t mimic_cxr -c config/train_mimic_cxr_chen_cvt2distilgpt2.yaml --s
 ```
 
 See [`dlhpcstarter==0.1.2`](https://github.com/csiro-mlai/dl_hpc_starter_pack) for more options. 
-
-## Reference
-[1] [Aaron Nicolson, Jason Dowling, and Bevan Koopman, *Improving Chest X-Ray Report Generation by Leveraging Warm-Starting*, Under review (January 2022)](https://arxiv.org/abs/2201.09405)
 
 ## Help
 If you need help, please leave an issue and we will get back to you as soon as possible.
