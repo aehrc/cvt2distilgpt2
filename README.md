@@ -1,5 +1,7 @@
 # CvT2DistilGPT2
-```
+
+#### BibTeX citation:
+```bibtex
 @article{nicolson_improving_2023,
 	title = {Improving chest {X}-ray report generation by leveraging warm starting},
 	issn = {0933-3657},
@@ -15,7 +17,7 @@
 }
 ```
 
-#### Improving Chest X-Ray Report Generation by Leveraging Warm-Starting
+#### Improving Chest X-Ray Report Generation by Leveraging Warm-Starting:
 - This repository houses the code for CvT2DistilGPT2 from https://doi.org/10.1016/j.artmed.2023.102633.
 - Implemented in [PyTorch Lightning](https://pytorch-lightning.readthedocs.io/).
 - CvT2DistilGPT2 is an encoder-to-decoder model that was developed for chest X-ray report generation. 
@@ -170,11 +172,11 @@ The results should be similar to the following presented results:
 
 ## Encoder and decoder checkpoints for warm-starting training:
 
-### CvT-21 Checkpoint
+### CvT-21 Checkpoint:
 
 Download `CvT-21-384x384-IN-22k.pth` from this [Microsoft model zoo](https://onedrive.live.com/?authkey=%21AMXesxbtKwsdryE&id=56B9F9C97F261712%2115004&cid=56B9F9C97F261712) and place it in `checkpoints` such that its path is `checkpoints/CvT-21-384x384-IN-22k.pth`
 
-### DistilGPT2 Checkpoint
+### DistilGPT2 Checkpoint:
 
 Download `config.json`, `tokenizer.json`, `pytorch_model.bin`, and `vocab.json` from [https://huggingface.co/distilgpt2/tree/main](https://huggingface.co/distilgpt2/tree/main) and place them in `checkpoints/distilgpt2`, e.g., `checkpoints/distilgpt2/config.json`.
 
