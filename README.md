@@ -49,7 +49,7 @@ python -m pip install --upgrade -r requirements.txt --no-cache-dir
 
 #### CheXbert for the CE metrics:
 
-Download the CHeXbert checkpoint from https://github.com/stanfordmlgroup/CheXbert for the CE metrics.
+Download the CheXbert checkpoint from https://github.com/stanfordmlgroup/CheXbert for the CE metrics.
 
 Place the checkpoint at `checkpoints/stanford/chexbert/chexbert.pth`.
   
