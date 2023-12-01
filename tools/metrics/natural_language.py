@@ -10,7 +10,7 @@ class NaturalLanguage(Metric):
 
     def __init__(self, dist_sync_on_step=False):
 
-        super().__init__(dist_sync_on_step=dist_sync_on_step, compute_on_step=False)
+        super().__init__(dist_sync_on_step=dist_sync_on_step)
         self.add_state('pairs', default=[])  # prediction and label pairs.
 
     def update(self, y_hat, y, ids):
