@@ -26,7 +26,7 @@ class ReportLogger(Metric):
         split - train, val, or test split.
         dist_sync_on_step - sync the workers at each step.
         """
-        super().__init__(dist_sync_on_step=dist_sync_on_step, compute_on_step=False)
+        super().__init__(dist_sync_on_step=dist_sync_on_step)
         self.exp_dir = exp_dir
         self.split = split
 
