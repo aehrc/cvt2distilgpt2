@@ -99,6 +99,6 @@ def stages(args: Namespace):
             print('Testing checkpoint: {}.'.format(ckpt_path))
             write_test_ckpt_path(ckpt_path, args.exp_dir_trial)
 
-            model = TaskModel.load_from_checkpoint(checkpoint_path=ckpt_path, **vars(args))
+            model = TaskModel.load_from_checkpoint(checkpoint_path=ckpt_path, **vars(args), strict=False)
 
         trainer.test(model)

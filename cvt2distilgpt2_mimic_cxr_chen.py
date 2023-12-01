@@ -164,6 +164,9 @@ class CvT2DistilGPT2MIMICXRChen(LightningModule):
             def get_output_embeddings(cls):
                 return None
 
+            def forward(self):
+                return None
+
         # Use Hugging Face Transformers EncoderDecoderModel to generate conditionally:
         dummy_encoder = DummyEncoder(hidden_size=decoder.config.hidden_size)
 

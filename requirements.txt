@@ -3,5 +3,5 @@ einops==0.3.2
 pycocoevalcap==1.2
 pycocotools==2.0.4
 timm==0.4.12
-transformers==4.15.0  # transformers==4.28.1
+transformers==4.35.2
 yacs==0.1.8
