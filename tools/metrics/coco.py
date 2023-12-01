@@ -30,7 +30,7 @@ class COCOCaptionMetrics(Metric):
             exp_dir=None,
             dist_sync_on_step=False,
     ):
-        super().__init__(dist_sync_on_step=dist_sync_on_step, compute_on_step=False)
+        super().__init__(dist_sync_on_step=dist_sync_on_step)
 
         self.add_state("predictions", default=[])
         self.add_state("labels", default=[])
