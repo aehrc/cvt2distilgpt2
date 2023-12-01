@@ -388,12 +388,12 @@ class CvT2DistilGPT2MIMICXRChen(LightningModule):
         encoder_outputs = self.encoder_forward(images)
 
         outputs = self.decoder.encoder_decoder.generate(
-            special_token_ids=[self.tokenizer.sep_token_id],
+            # special_token_ids=[self.tokenizer.sep_token_id],
             max_length=self.decoder_max_len,
             bos_token_id=self.tokenizer.bos_token_id,
             eos_token_id=self.tokenizer.eos_token_id,
             pad_token_id=self.tokenizer.pad_token_id,
-            mask_token_id=self.tokenizer.pad_token_id,
+            # mask_token_id=self.tokenizer.pad_token_id,
             num_beams=num_beams,
             return_dict_in_generate=True,
             use_cache=True,
