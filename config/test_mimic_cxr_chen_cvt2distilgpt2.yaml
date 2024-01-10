@@ -9,7 +9,7 @@ num_workers: 5
 strategy: ddp_find_unused_parameters_true
 
 module: cvt2distilgpt2_mimic_cxr_chen
-definition: CvT2DistilGPT2
+definition: CvT2DistilGPT2MIMICXRChen
 
 test_ckpt_path: checkpoints/mimic_cxr_jpg_chen/cvt_21_to_distilgpt2/epoch=8-val_chen_cider=0.425092.ckpt
 
